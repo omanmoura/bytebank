@@ -5,21 +5,24 @@ class Cliente {
 
 class ContaCorrente {
     agencia;
-    saldo;
+    //#saldo = 0; <---- CASO FOSSE UTILIZADO O NODE.JS, CONSEGUIRIA INSERIR ATRIBUTO PRIVADO À CLASSE
+    _saldo = 0; // <---- CONVENÇÃO PARA ATRIBUTO "PRIVADO"
 
     depositar(valor) {
         if (valor >= 0) {
-            this.saldo += valor;
+            this._saldo += valor;
+            console.log(`Você depositou R$${valor} \nNovo saldo: R$${this._saldo}`)
         } else {
-            console.log ("Valor inválido.");
+            console.log (`Valor inválido. Saldo atual: ${this._saldo}.`);
         }
     }
 
     sacar(valor) {
-        if (this.saldo >= valor) {
-            this.saldo -= valor;
+        if (this._saldo >= valor) {
+            this._saldo -= valor;
+            console.log(`Você sacou R$${valor} \nNovo saldo: R$${this._saldo}`)
         } else {
-            console.log("Saldo insuficiente.");
+            console.log("Saldo insuficiente para esse saque.");
         }
     }
 }
@@ -32,5 +35,8 @@ const cliente2 = new Cliente();
 cliente2.nome = "Alice";
 cliente2.cpf = 22233344409;
 
-console.log(cliente1);
-console.log(cliente2);
+const contaCorrenteRicardo = new ContaCorrente();
+contaCorrenteRicardo.agencia = 1001;
+
+contaCorrenteRicardo.depositar(100);
+contaCorrenteRicardo.sacar(205);
