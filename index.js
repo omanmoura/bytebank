@@ -23,3 +23,5 @@ console.log(contaCorrenteRicardo);
 console.log(conta2);
 
 contaCorrenteRicardo.transferir(50,conta2);
+
+console.log(conta2.saldo);
