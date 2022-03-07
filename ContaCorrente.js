@@ -2,8 +2,6 @@ import { Cliente } from "./Cliente.js";
 
 export class ContaCorrente {
     static numeroDeContas = 0;
-    agencia;
-    _cliente;
 
     set cliente(novoValor) {
         if (novoValor instanceof Cliente) {
@@ -15,16 +13,14 @@ export class ContaCorrente {
         return this._cliente;
     }
 
-    //#saldo = 0; <---- CASO FOSSE UTILIZADO O NODE.JS, CONSEGUIRIA INSERIR ATRIBUTO PRIVADO À CLASSE
-    _saldo = 0; // <---- CONVENÇÃO PARA ATRIBUTO "PRIVADO"
-
     get saldo() {
         return this._saldo;
     }
 
     constructor (agencia, cliente) {
         this.agencia = agencia;
-        this.cliente = cliente;
+        this._cliente = cliente;
+        this._saldo = 0;
         ContaCorrente.numeroDeContas++;
     }
 
